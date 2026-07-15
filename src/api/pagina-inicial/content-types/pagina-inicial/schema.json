@@ -1,0 +1,55 @@
+{
+  "kind": "singleType",
+  "collectionName": "pagina_inicials",
+  "info": {
+    "singularName": "pagina-inicial",
+    "pluralName": "pagina-inicials",
+    "displayName": "Página Inicial"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "component": "sections.hero-principal",
+      "repeatable": false
+    },
+    "sobreMim": {
+      "type": "component",
+      "component": "sections.sobre-mim",
+      "repeatable": false
+    },
+    "competenciasTecnicas": {
+      "type": "component",
+      "component": "sections.competencias-tecnicas",
+      "repeatable": true
+    },
+    "experienciaProfissional": {
+      "type": "component",
+      "component": "sections.experiencia-profissional",
+      "repeatable": false
+    },
+    "projetos": {
+      "type": "component",
+      "component": "sections.projetos",
+      "repeatable": false
+    },
+    "servicos": {
+      "type": "component",
+      "component": "sections.seccao-de-cards",
+      "repeatable": false
+    },
+    "formacaoCertificacoes": {
+      "type": "component",
+      "component": "sections.seccao-de-cards",
+      "repeatable": false
+    },
+    "contacto": {
+      "type": "component",
+      "component": "sections.contacto",
+      "repeatable": false
+    }
+  }
+}

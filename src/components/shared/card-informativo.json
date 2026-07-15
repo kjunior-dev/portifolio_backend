@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shared_card_informativos",
+  "info": {
+    "displayName": "Card Informativo"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "icone": {
+      "type": "string"
+    },
+    "ordem": {
+      "type": "integer"
+    },
+    "ativo": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

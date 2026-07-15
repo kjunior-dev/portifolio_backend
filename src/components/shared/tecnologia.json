@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_tecnologias",
+  "info": {
+    "displayName": "Tecnologia"
+  },
+  "options": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "ordem": {
+      "type": "integer"
+    },
+    "ativo": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,44 @@
+{
+  "collectionName": "components_shared_acoes",
+  "info": {
+    "displayName": "Acoes"
+  },
+  "options": {},
+  "attributes": {
+    "texto": {
+      "type": "string"
+    },
+    "tipoDestino": {
+      "type": "enumeration",
+      "enum": [
+        "ancora",
+        "url",
+        "curriculo"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "variante": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "link"
+      ]
+    },
+    "icone": {
+      "type": "string"
+    },
+    "novaAba": {
+      "type": "boolean"
+    },
+    "ordem": {
+      "type": "integer"
+    },
+    "ativo": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

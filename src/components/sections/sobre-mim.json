@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_sections_sobre_mims",
+  "info": {
+    "displayName": "Sobre Mim"
+  },
+  "options": {},
+  "attributes": {
+    "ativo": {
+      "type": "boolean"
+    },
+    "etiqueta": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "text"
+    },
+    "introducao": {
+      "type": "text"
+    },
+    "conteudo": {
+      "type": "richtext"
+    },
+    "destaque": {
+      "type": "component",
+      "component": "shared.destaque-profissional",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

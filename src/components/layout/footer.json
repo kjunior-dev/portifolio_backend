@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_layout_footers",
+  "info": {
+    "displayName": "Footer"
+  },
+  "options": {},
+  "attributes": {
+    "textoDireitos": {
+      "type": "string"
+    },
+    "mostrarMenu": {
+      "type": "boolean"
+    },
+    "mostrarRedesSociais": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_competencias_tecnicas",
+  "info": {
+    "displayName": "Competências Técnicas"
+  },
+  "options": {},
+  "attributes": {
+    "ativo": {
+      "type": "boolean"
+    },
+    "etiqueta": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "text"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "categorias": {
+      "type": "component",
+      "component": "shared.categoria-de-competencia",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

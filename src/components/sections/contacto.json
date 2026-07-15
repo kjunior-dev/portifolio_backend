@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_sections_contactos",
+  "info": {
+    "displayName": "Contacto"
+  },
+  "options": {},
+  "attributes": {
+    "ativo": {
+      "type": "boolean"
+    },
+    "idAncora": {
+      "type": "string"
+    },
+    "etiqueta": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "text"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "tituloContactoDireto": {
+      "type": "string"
+    },
+    "descricaoContactoDireto": {
+      "type": "text"
+    },
+    "informacoes": {
+      "type": "component",
+      "component": "shared.informacao-de-contacto",
+      "repeatable": true
+    },
+    "redesSocial": {
+      "type": "component",
+      "component": "shared.rede-social",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,53 @@
+{
+  "collectionName": "components_shared_experiencias",
+  "info": {
+    "displayName": "Experiência"
+  },
+  "options": {},
+  "attributes": {
+    "area": {
+      "type": "string"
+    },
+    "cargo": {
+      "type": "string"
+    },
+    "tipoExperiencia": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "empresa": {
+      "type": "string"
+    },
+    "localizacao": {
+      "type": "string"
+    },
+    "dataInicio": {
+      "type": "date"
+    },
+    "dataFim": {
+      "type": "date"
+    },
+    "atual": {
+      "type": "boolean"
+    },
+    "responsabilidades": {
+      "type": "component",
+      "component": "shared.responsabilidade",
+      "repeatable": true
+    },
+    "tecnologias": {
+      "type": "component",
+      "component": "shared.tecnologia",
+      "repeatable": true
+    },
+    "ordem": {
+      "type": "integer"
+    },
+    "ativo": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_experiencia_profissionals",
+  "info": {
+    "displayName": "Experiência Profissional"
+  },
+  "options": {},
+  "attributes": {
+    "ativo": {
+      "type": "boolean"
+    },
+    "etiqueta": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "text"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "experiencias": {
+      "type": "component",
+      "component": "shared.experiencia",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

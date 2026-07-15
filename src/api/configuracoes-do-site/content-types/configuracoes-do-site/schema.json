@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "configuracoes_do_sites",
+  "info": {
+    "singularName": "configuracoes-do-site",
+    "pluralName": "configuracoes-do-sites",
+    "displayName": "Configurações do Site"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "menuPrincipal": {
+      "type": "component",
+      "component": "shared.link-de-navegacao",
+      "repeatable": true
+    },
+    "curriculo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

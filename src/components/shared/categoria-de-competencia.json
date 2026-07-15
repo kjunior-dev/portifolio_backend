@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_categoria_de_competencias",
+  "info": {
+    "displayName": "Categoria de Competência"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "ordem": {
+      "type": "integer"
+    },
+    "ativo": {
+      "type": "boolean"
+    },
+    "tecnologias": {
+      "type": "component",
+      "component": "shared.tecnologia",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

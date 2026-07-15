@@ -1,0 +1,73 @@
+{
+  "collectionName": "components_sections_hero_principals",
+  "info": {
+    "displayName": "Hero Principal",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "disponivel": {
+      "type": "boolean"
+    },
+    "textoDisponibilidade": {
+      "type": "string"
+    },
+    "subtitulo": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "text"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "fotoPerfil": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "nome": {
+      "type": "string"
+    },
+    "cargo": {
+      "type": "string"
+    },
+    "localizacao": {
+      "type": "string"
+    },
+    "objetivo": {
+      "type": "string"
+    },
+    "competencias": {
+      "type": "component",
+      "component": "shared.competencias",
+      "repeatable": true
+    },
+    "acoes": {
+      "type": "component",
+      "component": "shared.acoes",
+      "repeatable": true
+    },
+    "redesSociais": {
+      "type": "component",
+      "component": "shared.rede-social",
+      "repeatable": true
+    },
+    "curriculo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

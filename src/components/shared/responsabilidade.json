@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_responsabilidades",
+  "info": {
+    "displayName": "Responsabilidade"
+  },
+  "options": {},
+  "attributes": {
+    "texto": {
+      "type": "text"
+    },
+    "ordem": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

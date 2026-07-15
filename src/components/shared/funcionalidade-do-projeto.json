@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_funcionalidade_do_projetos",
+  "info": {
+    "displayName": "Funcionalidade do Projeto"
+  },
+  "options": {},
+  "attributes": {
+    "texto": {
+      "type": "text"
+    },
+    "ordem": {
+      "type": "integer"
+    },
+    "ativo": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

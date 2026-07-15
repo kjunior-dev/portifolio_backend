@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_competencias",
+  "info": {
+    "displayName": "Competencias"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "ordem": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

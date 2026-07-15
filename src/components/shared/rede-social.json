@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_shared_rede_socials",
+  "info": {
+    "displayName": "Rede Social"
+  },
+  "options": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "Github",
+        "Linkedin",
+        "Mail"
+      ]
+    },
+    "labelAcessibilidade": {
+      "type": "string"
+    },
+    "novaAba": {
+      "type": "boolean"
+    },
+    "ordem": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_link_de_navegacaos",
+  "info": {
+    "displayName": "Link de Navegação"
+  },
+  "options": {},
+  "attributes": {
+    "texto": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "ordem": {
+      "type": "integer"
+    },
+    "ativo": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

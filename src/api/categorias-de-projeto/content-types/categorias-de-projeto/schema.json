@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categorias_de_projetos",
+  "info": {
+    "singularName": "categorias-de-projeto",
+    "pluralName": "categorias-de-projetos",
+    "displayName": "Categorias de Projeto"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nome"
+    },
+    "ordem": {
+      "type": "integer"
+    },
+    "ativo": {
+      "type": "boolean"
+    },
+    "projetos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::projeto.projeto",
+      "mappedBy": "categorias_de_projetos"
+    },
+    "projeto": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::projeto.projeto",
+      "inversedBy": "categoriaPrincipal"
+    }
+  }
+}

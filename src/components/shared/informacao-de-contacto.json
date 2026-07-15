@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shared_informacao_de_contactos",
+  "info": {
+    "displayName": "Informação de Contacto"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "valor": {
+      "type": "string"
+    },
+    "icone": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "ordem": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

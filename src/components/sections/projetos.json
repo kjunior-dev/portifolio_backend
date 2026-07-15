@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_projetos",
+  "info": {
+    "displayName": "Projetos",
+    "icon": "connector"
+  },
+  "options": {},
+  "attributes": {
+    "ativo": {
+      "type": "boolean"
+    },
+    "etiqueta": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "text"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "mostrarFiltros": {
+      "type": "boolean"
+    },
+    "quantidadeInicial": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}
