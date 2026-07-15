@@ -555,7 +555,7 @@ export interface ApiPaginaInicialPaginaInicial extends Struct.SingleTypeSchema {
   attributes: {
     competenciasTecnicas: Schema.Attribute.Component<
       'sections.competencias-tecnicas',
-      true
+      false
     >;
     contacto: Schema.Attribute.Component<'sections.contacto', false>;
     createdAt: Schema.Attribute.DateTime;

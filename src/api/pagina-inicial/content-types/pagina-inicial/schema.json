@@ -24,7 +24,7 @@
     "competenciasTecnicas": {
       "type": "component",
       "component": "sections.competencias-tecnicas",
-      "repeatable": true
+      "repeatable": false
     },
     "experienciaProfissional": {
       "type": "component",
