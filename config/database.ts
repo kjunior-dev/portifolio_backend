@@ -2,7 +2,7 @@ import path from 'path';
 import type { Core } from '@strapi/strapi';
 
 const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Database => {
-  const client = env('DATABASE_CLIENT', 'sqlite');
+  const client = env('DATABASE_CLIENT', 'postgres');
 
   const connections = {
     postgres: {
@@ -29,7 +29,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Database 
 
   if (!(client in connections)) {
     throw new Error(
-      `Unsupported DATABASE_CLIENT: ${client}. Use "postgres", "mysql", or "sqlite".`
+      `Unsupported DATABASE_CLIENT: ${client}. Use "postgres".`
     );
   }
 
