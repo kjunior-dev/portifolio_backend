@@ -6,8 +6,10 @@ export interface LayoutFooter extends Struct.ComponentSchema {
     displayName: 'Footer';
   };
   attributes: {
+    cargo: Schema.Attribute.String;
     mostrarMenu: Schema.Attribute.Boolean;
     mostrarRedesSociais: Schema.Attribute.Boolean;
+    nome: Schema.Attribute.String;
     textoDireitos: Schema.Attribute.String;
   };
 }

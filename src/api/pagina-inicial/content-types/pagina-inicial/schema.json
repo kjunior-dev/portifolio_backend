@@ -50,6 +50,11 @@
       "type": "component",
       "component": "sections.contacto",
       "repeatable": false
+    },
+    "footer": {
+      "type": "component",
+      "component": "layout.footer",
+      "repeatable": false
     }
   }
 }

@@ -565,6 +565,7 @@ export interface ApiPaginaInicialPaginaInicial extends Struct.SingleTypeSchema {
       'sections.experiencia-profissional',
       false
     >;
+    footer: Schema.Attribute.Component<'layout.footer', false>;
     formacaoCertificacoes: Schema.Attribute.Component<
       'sections.seccao-de-cards',
       false

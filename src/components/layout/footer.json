@@ -5,6 +5,12 @@
   },
   "options": {},
   "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "cargo": {
+      "type": "string"
+    },
     "textoDireitos": {
       "type": "string"
     },
