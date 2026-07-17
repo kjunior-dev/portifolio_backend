@@ -11,14 +11,6 @@
     "url": {
       "type": "string"
     },
-    "icon": {
-      "type": "enumeration",
-      "enum": [
-        "Github",
-        "Linkedin",
-        "Mail"
-      ]
-    },
     "labelAcessibilidade": {
       "type": "string"
     },
@@ -27,6 +19,9 @@
     },
     "ordem": {
       "type": "integer"
+    },
+    "icon": {
+      "type": "string"
     }
   },
   "config": {}

@@ -280,7 +280,7 @@ export interface SharedRedeSocial extends Struct.ComponentSchema {
     displayName: 'Rede Social';
   };
   attributes: {
-    icon: Schema.Attribute.Enumeration<['Github', 'Linkedin', 'Mail']>;
+    icon: Schema.Attribute.String;
     labelAcessibilidade: Schema.Attribute.String;
     nome: Schema.Attribute.String;
     novaAba: Schema.Attribute.Boolean;
