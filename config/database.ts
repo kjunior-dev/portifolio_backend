@@ -11,14 +11,6 @@ const config = ({
     );
   }
 
-  const databaseHost = new URL(databaseUrl).hostname;
-
-  if (databaseHost.endsWith('.railway.internal')) {
-    throw new Error(
-      'The configured database URL uses Railway private networking. For local development, set DATABASE_PUBLIC_URL to the Railway public TCP proxy connection string.'
-    );
-  }
-
   return {
     connection: {
       client: 'postgres',
