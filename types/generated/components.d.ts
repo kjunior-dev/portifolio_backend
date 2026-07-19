@@ -83,6 +83,7 @@ export interface SectionsHeroPrincipal extends Struct.ComponentSchema {
     fotoPerfil: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
+    iconn: Schema.Attribute.String;
     localizacao: Schema.Attribute.String;
     nome: Schema.Attribute.String;
     objetivo: Schema.Attribute.String;

@@ -40,6 +40,9 @@
     "localizacao": {
       "type": "string"
     },
+    "iconn": {
+      "type": "string"
+    },
     "objetivo": {
       "type": "string"
     },
