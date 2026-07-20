@@ -19,6 +19,16 @@
     },
     "mostrarRedesSociais": {
       "type": "boolean"
+    },
+    "menuPrincipal": {
+      "type": "component",
+      "component": "shared.link-de-navegacao",
+      "repeatable": true
+    },
+    "redesSocial": {
+      "type": "component",
+      "component": "shared.rede-social",
+      "repeatable": true
     }
   },
   "config": {}

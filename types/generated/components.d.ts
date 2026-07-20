@@ -7,9 +7,11 @@ export interface LayoutFooter extends Struct.ComponentSchema {
   };
   attributes: {
     cargo: Schema.Attribute.String;
+    menuPrincipal: Schema.Attribute.Component<'shared.link-de-navegacao', true>;
     mostrarMenu: Schema.Attribute.Boolean;
     mostrarRedesSociais: Schema.Attribute.Boolean;
     nome: Schema.Attribute.String;
+    redesSocial: Schema.Attribute.Component<'shared.rede-social', true>;
     textoDireitos: Schema.Attribute.String;
   };
 }
