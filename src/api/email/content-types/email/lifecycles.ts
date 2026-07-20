@@ -52,6 +52,8 @@ async function executarCodigoDepoisDaCriacao(dados: EmailRecordData): Promise<vo
   const identificador = obterIdentificador(dados);
 
   try {
+    validarConfiguracaoEmail();
+
     const subject = 'Nova mensagem recebida pelo website';
     const html = gerarHtmlNovaMensagem(dados, enviadoEm);
     const text = gerarTextoNovaMensagem(dados, enviadoEm);
@@ -71,6 +73,23 @@ async function executarCodigoDepoisDaCriacao(dados: EmailRecordData): Promise<vo
 
     strapi.log.error(
       `Erro ao enviar email de notificacao para ${DESTINATARIO}. Registo: ${identificador}. Erro: ${message}`
+    );
+  }
+}
+
+function validarConfiguracaoEmail(): void {
+  const requiredVariables = ['SMTP_HOST', 'SMTP_USERNAME', 'SMTP_PASSWORD'];
+  const missingVariables = requiredVariables.filter((name) => !process.env[name]);
+
+  if (missingVariables.length > 0) {
+    throw new Error(
+      `Configuracao SMTP incompleta. Variaveis em falta: ${missingVariables.join(', ')}.`
+    );
+  }
+
+  if (process.env.SMTP_PASSWORD === 'your-gmail-app-password') {
+    throw new Error(
+      'Configuracao SMTP invalida. Substitua SMTP_PASSWORD por uma App Password real do Gmail.'
     );
   }
 }

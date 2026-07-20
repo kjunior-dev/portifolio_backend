@@ -43,11 +43,11 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
     config: {
       provider: 'nodemailer',
       providerOptions: {
-        host: env('SMTP_HOST'),
+        host: env('SMTP_HOST', 'smtp.gmail.com'),
         port: env.int('SMTP_PORT', 587),
         secure: env.bool('SMTP_SECURE', false),
         auth: {
-          user: env('SMTP_USERNAME'),
+          user: env('SMTP_USERNAME', 'webdevcv.cv@gmail.com'),
           pass: env('SMTP_PASSWORD'),
         },
       },
