@@ -8,6 +8,9 @@
     "nome": {
       "type": "string"
     },
+    "icon": {
+      "type": "string"
+    },
     "url": {
       "type": "string"
     },
@@ -19,9 +22,6 @@
     },
     "ordem": {
       "type": "integer"
-    },
-    "icon": {
-      "type": "string"
     }
   },
   "config": {}
