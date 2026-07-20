@@ -34,14 +34,24 @@ export default {
     const { result } = event;
     const identificador = obterIdentificador(result);
 
-    strapi.log.info(`Novo registo criado em ${CONTENT_TYPE_UID}: ${identificador}`);
+    strapi.log.info(`[Email lifecycle] afterCreate iniciado para ${CONTENT_TYPE_UID}: ${identificador}`);
+    strapi.log.info(
+      `[Email lifecycle] Estado do registo ${identificador}: publishedAt=${formatarValor(result.publishedAt)}`
+    );
+    strapi.log.info(
+      `[Email lifecycle] Campos recebidos no registo ${identificador}: ${Object.keys(result).join(', ')}`
+    );
 
     if ('publishedAt' in result && !result.publishedAt) {
       strapi.log.info(
-        `Email nao enviado: registo ${identificador} ainda esta em rascunho.`
+        `[Email lifecycle] Email nao enviado: registo ${identificador} ainda esta em rascunho.`
       );
       return;
     }
+
+    strapi.log.info(
+      `[Email lifecycle] Registo ${identificador} esta publicado ou sem Draft & Publish. A preparar envio.`
+    );
 
     await executarCodigoDepoisDaCriacao(result);
   },
@@ -52,13 +62,26 @@ async function executarCodigoDepoisDaCriacao(dados: EmailRecordData): Promise<vo
   const identificador = obterIdentificador(dados);
 
   try {
+    strapi.log.info(`[Email lifecycle] Validando configuracao SMTP para registo ${identificador}.`);
     validarConfiguracaoEmail();
 
     const subject = 'Nova mensagem recebida pelo website';
+    strapi.log.info(
+      `[Email lifecycle] Configuracao SMTP carregada: host=${process.env.SMTP_HOST ?? 'smtp.gmail.com'}, port=${process.env.SMTP_PORT ?? '587'}, secure=${process.env.SMTP_SECURE ?? 'false'}, user=${process.env.SMTP_USERNAME ?? 'webdevcv.cv@gmail.com'}, passwordDefinida=${process.env.SMTP_PASSWORD ? 'sim' : 'nao'}`
+    );
+
+    strapi.log.info(`[Email lifecycle] Gerando HTML e texto simples para registo ${identificador}.`);
     const html = gerarHtmlNovaMensagem(dados, enviadoEm);
     const text = gerarTextoNovaMensagem(dados, enviadoEm);
 
-    await strapi.plugin('email').service('email').send({
+    strapi.log.info(
+      `[Email lifecycle] Conteudo gerado para registo ${identificador}: html=${html.length} caracteres, text=${text.length} caracteres.`
+    );
+    strapi.log.info(
+      `[Email lifecycle] Chamando strapi.plugin('email').service('email').send() para ${DESTINATARIO}.`
+    );
+
+    const response = await strapi.plugin('email').service('email').send({
       to: DESTINATARIO,
       subject,
       text,
@@ -66,25 +89,27 @@ async function executarCodigoDepoisDaCriacao(dados: EmailRecordData): Promise<vo
     });
 
     strapi.log.info(
-      `Email de notificacao enviado com sucesso para ${DESTINATARIO}. Registo: ${identificador}`
+      `[Email lifecycle] Resposta do provider para registo ${identificador}: ${formatarValor(response as EmailRecordValue)}`
+    );
+    strapi.log.info(
+      `[Email lifecycle] Email de notificacao enviado com sucesso para ${DESTINATARIO}. Registo: ${identificador}`
     );
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
 
     strapi.log.error(
-      `Erro ao enviar email de notificacao para ${DESTINATARIO}. Registo: ${identificador}. Erro: ${message}`
+      `[Email lifecycle] Erro ao enviar email de notificacao para ${DESTINATARIO}. Registo: ${identificador}. Erro: ${message}`
     );
+
+    if (error instanceof Error && error.stack) {
+      strapi.log.error(`[Email lifecycle] Stack do erro: ${error.stack}`);
+    }
   }
 }
 
 function validarConfiguracaoEmail(): void {
-  const requiredVariables = ['SMTP_HOST', 'SMTP_USERNAME', 'SMTP_PASSWORD'];
-  const missingVariables = requiredVariables.filter((name) => !process.env[name]);
-
-  if (missingVariables.length > 0) {
-    throw new Error(
-      `Configuracao SMTP incompleta. Variaveis em falta: ${missingVariables.join(', ')}.`
-    );
+  if (!process.env.SMTP_PASSWORD) {
+    throw new Error('Configuracao SMTP incompleta. Variavel em falta: SMTP_PASSWORD.');
   }
 
   if (process.env.SMTP_PASSWORD === 'your-gmail-app-password') {
