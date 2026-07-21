@@ -79,7 +79,7 @@ export interface SectionsHeroPrincipal extends Struct.ComponentSchema {
     acoes: Schema.Attribute.Component<'shared.acoes', true>;
     cargo: Schema.Attribute.String;
     competencias: Schema.Attribute.Component<'shared.competencias', true>;
-    curriculo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    curriculo: Schema.Attribute.Text;
     descricao: Schema.Attribute.Text;
     disponivel: Schema.Attribute.Boolean;
     fotoPerfil: Schema.Attribute.Media<
