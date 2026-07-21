@@ -60,9 +60,6 @@
       "type": "component",
       "component": "shared.rede-social",
       "repeatable": true
-    },
-    "curriculo": {
-      "type": "text"
     }
   },
   "config": {}
