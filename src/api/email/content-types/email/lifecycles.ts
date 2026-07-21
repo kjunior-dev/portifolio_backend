@@ -28,6 +28,7 @@ interface LifecycleEvent<T> {
 
 const DESTINATARIO = 'webdevcv.cv@gmail.com';
 const CONTENT_TYPE_UID = 'api::email.email';
+const EMAIL_SEND_TIMEOUT_MS = Number(process.env.EMAIL_SEND_TIMEOUT_MS ?? 20000);
 
 export default {
   async afterCreate(event: LifecycleEvent<EmailRecordData>): Promise<void> {
@@ -81,12 +82,15 @@ async function executarCodigoDepoisDaCriacao(dados: EmailRecordData): Promise<vo
       `[Email lifecycle] Chamando strapi.plugin('email').service('email').send() para ${DESTINATARIO}.`
     );
 
-    const response = await strapi.plugin('email').service('email').send({
-      to: DESTINATARIO,
-      subject,
-      text,
-      html,
-    });
+    const response = await enviarEmailComTimeout(
+      {
+        to: DESTINATARIO,
+        subject,
+        text,
+        html,
+      },
+      EMAIL_SEND_TIMEOUT_MS
+    );
 
     strapi.log.info(
       `[Email lifecycle] Resposta do provider para registo ${identificador}: ${formatarValor(response as EmailRecordValue)}`
@@ -103,6 +107,39 @@ async function executarCodigoDepoisDaCriacao(dados: EmailRecordData): Promise<vo
 
     if (error instanceof Error && error.stack) {
       strapi.log.error(`[Email lifecycle] Stack do erro: ${error.stack}`);
+    }
+  }
+}
+
+interface EmailPayload {
+  to: string;
+  subject: string;
+  text: string;
+  html: string;
+}
+
+async function enviarEmailComTimeout(
+  payload: EmailPayload,
+  timeoutMs: number
+): Promise<EmailRecordValue> {
+  let timeout: NodeJS.Timeout | undefined;
+
+  try {
+    return await Promise.race([
+      strapi.plugin('email').service('email').send(payload) as Promise<EmailRecordValue>,
+      new Promise<never>((_, reject) => {
+        timeout = setTimeout(() => {
+          reject(
+            new Error(
+              `Timeout ao enviar email depois de ${timeoutMs}ms. Verifique SMTP_HOST, SMTP_PORT, SMTP_SECURE e se a rede permite ligacao SMTP.`
+            )
+          );
+        }, timeoutMs);
+      }),
+    ]);
+  } finally {
+    if (timeout) {
+      clearTimeout(timeout);
     }
   }
 }

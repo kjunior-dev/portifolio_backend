@@ -46,6 +46,9 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
         host: env('SMTP_HOST', 'smtp.gmail.com'),
         port: env.int('SMTP_PORT', 587),
         secure: env.bool('SMTP_SECURE', false),
+        connectionTimeout: env.int('SMTP_CONNECTION_TIMEOUT_MS', 10000),
+        greetingTimeout: env.int('SMTP_GREETING_TIMEOUT_MS', 10000),
+        socketTimeout: env.int('SMTP_SOCKET_TIMEOUT_MS', 15000),
         auth: {
           user: env('SMTP_USERNAME', 'webdevcv.cv@gmail.com'),
           pass: env('SMTP_PASSWORD'),
