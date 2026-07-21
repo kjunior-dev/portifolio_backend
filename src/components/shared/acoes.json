@@ -17,7 +17,7 @@
       ]
     },
     "url": {
-      "type": "string"
+      "type": "text"
     },
     "variante": {
       "type": "enumeration",

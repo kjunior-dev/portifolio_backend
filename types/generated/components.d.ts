@@ -154,7 +154,7 @@ export interface SharedAcoes extends Struct.ComponentSchema {
     ordem: Schema.Attribute.Integer;
     texto: Schema.Attribute.String;
     tipoDestino: Schema.Attribute.Enumeration<['ancora', 'url', 'curriculo']>;
-    url: Schema.Attribute.String;
+    url: Schema.Attribute.Text;
     variante: Schema.Attribute.Enumeration<['primary', 'secondary', 'link']>;
   };
 }
@@ -288,7 +288,7 @@ export interface SharedRedeSocial extends Struct.ComponentSchema {
     nome: Schema.Attribute.String;
     novaAba: Schema.Attribute.Boolean;
     ordem: Schema.Attribute.Integer;
-    url: Schema.Attribute.String;
+    url: Schema.Attribute.Text;
   };
 }
 

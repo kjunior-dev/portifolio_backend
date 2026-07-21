@@ -12,7 +12,7 @@
       "type": "string"
     },
     "url": {
-      "type": "string"
+      "type": "text"
     },
     "labelAcessibilidade": {
       "type": "string"
