@@ -527,7 +527,7 @@ export interface ApiConfiguracoesDoSiteConfiguracoesDoSite
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    curriculo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    curriculo: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -535,6 +535,40 @@ export interface ApiConfiguracoesDoSiteConfiguracoesDoSite
     > &
       Schema.Attribute.Private;
     menuPrincipal: Schema.Attribute.Component<'shared.link-de-navegacao', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEmailEmail extends Struct.CollectionTypeSchema {
+  collectionName: 'emails';
+  info: {
+    displayName: 'Email';
+    pluralName: 'emails';
+    singularName: 'email';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    assunto: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::email.email'> &
+      Schema.Attribute.Private;
+    mensagem: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    nome: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1152,6 +1186,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::categorias-de-projeto.categorias-de-projeto': ApiCategoriasDeProjetoCategoriasDeProjeto;
       'api::configuracoes-do-site.configuracoes-do-site': ApiConfiguracoesDoSiteConfiguracoesDoSite;
+      'api::email.email': ApiEmailEmail;
       'api::pagina-inicial.pagina-inicial': ApiPaginaInicialPaginaInicial;
       'api::projeto.projeto': ApiProjetoProjeto;
       'plugin::content-releases.release': PluginContentReleasesRelease;

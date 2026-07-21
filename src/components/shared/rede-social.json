@@ -8,8 +8,11 @@
     "nome": {
       "type": "string"
     },
-    "url": {
+    "icon": {
       "type": "string"
+    },
+    "url": {
+      "type": "text"
     },
     "labelAcessibilidade": {
       "type": "string"
@@ -19,9 +22,6 @@
     },
     "ordem": {
       "type": "integer"
-    },
-    "icon": {
-      "type": "string"
     }
   },
   "config": {}

@@ -3,11 +3,11 @@ import type { Core } from '@strapi/strapi';
 const config = ({
                   env,
                 }: Core.Config.Shared.ConfigParams): Core.Config.Database => {
-  const databaseUrl = env('DATABASE_PUBLIC_URL') || env('DATABASE_URL');
+  const databaseUrl = env('DATABASE_URL');
 
   if (!databaseUrl) {
     throw new Error(
-      'DATABASE_PUBLIC_URL or DATABASE_URL is not set. Please set it to your Railway public Postgres connection string.'
+      'DATABASE_URL is not set. Please set it to your Railway Postgres connection string.'
     );
   }
 
@@ -17,14 +17,9 @@ const config = ({
 
       connection: {
         connectionString: databaseUrl,
-        ssl: env.bool('DATABASE_SSL', true)
-          ? {
-              rejectUnauthorized: env.bool(
-                'DATABASE_SSL_REJECT_UNAUTHORIZED',
-                false
-              ),
-            }
-          : false,
+
+        // Railway Postgres interno: SSL desativado explicitamente
+        ssl: false,
       },
 
       pool: {

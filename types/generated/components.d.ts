@@ -7,9 +7,11 @@ export interface LayoutFooter extends Struct.ComponentSchema {
   };
   attributes: {
     cargo: Schema.Attribute.String;
+    menuPrincipal: Schema.Attribute.Component<'shared.link-de-navegacao', true>;
     mostrarMenu: Schema.Attribute.Boolean;
     mostrarRedesSociais: Schema.Attribute.Boolean;
     nome: Schema.Attribute.String;
+    redesSocial: Schema.Attribute.Component<'shared.rede-social', true>;
     textoDireitos: Schema.Attribute.String;
   };
 }
@@ -83,6 +85,7 @@ export interface SectionsHeroPrincipal extends Struct.ComponentSchema {
     fotoPerfil: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
+    iconn: Schema.Attribute.String;
     localizacao: Schema.Attribute.String;
     nome: Schema.Attribute.String;
     objetivo: Schema.Attribute.String;
@@ -151,7 +154,7 @@ export interface SharedAcoes extends Struct.ComponentSchema {
     ordem: Schema.Attribute.Integer;
     texto: Schema.Attribute.String;
     tipoDestino: Schema.Attribute.Enumeration<['ancora', 'url', 'curriculo']>;
-    url: Schema.Attribute.String;
+    url: Schema.Attribute.Text;
     variante: Schema.Attribute.Enumeration<['primary', 'secondary', 'link']>;
   };
 }
@@ -285,7 +288,7 @@ export interface SharedRedeSocial extends Struct.ComponentSchema {
     nome: Schema.Attribute.String;
     novaAba: Schema.Attribute.Boolean;
     ordem: Schema.Attribute.Integer;
-    url: Schema.Attribute.String;
+    url: Schema.Attribute.Text;
   };
 }
 
