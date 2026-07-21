@@ -30,6 +30,12 @@ const DESTINATARIO = 'webdevcv.cv@gmail.com';
 const CONTENT_TYPE_UID = 'api::email.email';
 const EMAIL_SEND_TIMEOUT_MS = Number(process.env.EMAIL_SEND_TIMEOUT_MS ?? 20000);
 
+const CAMPOS_VISIVEIS_DO_EMAIL = [
+  { key: 'nome', label: 'Nome' },
+  { key: 'email', label: 'Email' },
+  { key: 'assunto', label: 'Assunto' },
+] as const;
+
 export default {
   async afterCreate(event: LifecycleEvent<EmailRecordData>): Promise<void> {
     const { result } = event;
@@ -157,20 +163,20 @@ function validarConfiguracaoEmail(): void {
 }
 
 function gerarHtmlNovaMensagem(dados: EmailRecordData, enviadoEm: Date): string {
-  const linhas = Object.entries(dados)
-    .filter(([campo]) => !campo.endsWith('By'))
+  const detalhes = CAMPOS_VISIVEIS_DO_EMAIL
     .map(
-      ([campo, valor]) => `
-        <tr>
-          <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; font-weight: 700; color: #111827; vertical-align: top;">
-            ${escapeHtml(formatarNomeCampo(campo))}
-          </td>
-          <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; color: #374151; vertical-align: top; white-space: pre-wrap;">
-            ${escapeHtml(formatarValor(valor))}
-          </td>
-        </tr>`
+      ({ key, label }) => `
+        <div style="padding: 14px 0; border-bottom: 1px solid #edf0f3;">
+          <div style="margin-bottom: 5px; color: #6b7280; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">
+            ${escapeHtml(label)}
+          </div>
+          <div style="color: #111827; font-size: 16px; line-height: 1.55;">
+            ${formatarCampoHtml(key, dados[key])}
+          </div>
+        </div>`
     )
     .join('');
+  const mensagem = escapeHtml(formatarValor(dados.mensagem));
 
   return `
 <!doctype html>
@@ -181,36 +187,38 @@ function gerarHtmlNovaMensagem(dados: EmailRecordData, enviadoEm: Date): string 
     <title>Nova mensagem recebida</title>
   </head>
   <body style="margin: 0; padding: 0; background: #f3f4f6; font-family: Arial, Helvetica, sans-serif;">
-    <div style="max-width: 720px; margin: 0 auto; padding: 32px 16px;">
-      <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
-        <div style="background: #111827; padding: 24px;">
-          <h1 style="margin: 0; color: #ffffff; font-size: 22px; line-height: 1.3;">
+    <div style="max-width: 680px; margin: 0 auto; padding: 28px 16px;">
+      <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden;">
+        <div style="padding: 28px 28px 22px; background: #0f172a;">
+          <div style="margin-bottom: 10px; color: #cbd5e1; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">
+            Portfolio
+          </div>
+          <h1 style="margin: 0; color: #ffffff; font-size: 26px; line-height: 1.25;">
             Nova mensagem recebida
           </h1>
         </div>
 
-        <div style="padding: 24px;">
-          <p style="margin: 0 0 16px; color: #374151; font-size: 15px; line-height: 1.6;">
-            Foi criado um novo registo na collection <strong>${escapeHtml(CONTENT_TYPE_UID)}</strong>.
+        <div style="padding: 28px;">
+          <p style="margin: 0 0 24px; color: #4b5563; font-size: 15px; line-height: 1.65;">
+            Recebeu uma nova mensagem atraves do formulario de contacto.
           </p>
 
-          <p style="margin: 0 0 24px; color: #374151; font-size: 15px; line-height: 1.6;">
-            <strong>Data e hora do envio:</strong> ${escapeHtml(formatarData(enviadoEm))}
-          </p>
+          <div style="margin-bottom: 26px; border-top: 1px solid #edf0f3;">
+            ${detalhes}
+          </div>
 
-          <table role="presentation" style="width: 100%; border-collapse: collapse; border: 1px solid #e5e7eb; font-size: 14px;">
-            <thead>
-              <tr>
-                <th align="left" style="padding: 12px; background: #f9fafb; border-bottom: 1px solid #e5e7eb; color: #111827;">
-                  Campo
-                </th>
-                <th align="left" style="padding: 12px; background: #f9fafb; border-bottom: 1px solid #e5e7eb; color: #111827;">
-                  Valor
-                </th>
-              </tr>
-            </thead>
-            <tbody>${linhas}</tbody>
-          </table>
+          <div style="margin-bottom: 24px;">
+            <div style="margin-bottom: 8px; color: #6b7280; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;">
+              Mensagem
+            </div>
+            <div style="padding: 18px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; color: #111827; font-size: 16px; line-height: 1.7; white-space: pre-wrap;">
+              ${mensagem}
+            </div>
+          </div>
+
+          <div style="padding-top: 18px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 13px; line-height: 1.5;">
+            Enviado em ${escapeHtml(formatarData(enviadoEm))}
+          </div>
         </div>
       </div>
     </div>
@@ -219,20 +227,30 @@ function gerarHtmlNovaMensagem(dados: EmailRecordData, enviadoEm: Date): string 
 }
 
 function gerarTextoNovaMensagem(dados: EmailRecordData, enviadoEm: Date): string {
-  const linhas = Object.entries(dados)
-    .filter(([campo]) => !campo.endsWith('By'))
-    .map(([campo, valor]) => `${formatarNomeCampo(campo)}: ${formatarValor(valor)}`)
+  const linhas = CAMPOS_VISIVEIS_DO_EMAIL
+    .map(({ key, label }) => `${label}: ${formatarValor(dados[key])}`)
     .join('\n');
 
   return [
     'Nova mensagem recebida',
     '',
-    `Foi criado um novo registo na collection ${CONTENT_TYPE_UID}.`,
-    `Data e hora do envio: ${formatarData(enviadoEm)}`,
+    'Recebeu uma nova mensagem atraves do formulario de contacto.',
     '',
-    'Dados do registo:',
     linhas,
+    `Mensagem: ${formatarValor(dados.mensagem)}`,
+    '',
+    `Enviado em: ${formatarData(enviadoEm)}`,
   ].join('\n');
+}
+
+function formatarCampoHtml(campo: string, valor: EmailRecordValue): string {
+  const valorFormatado = escapeHtml(formatarValor(valor));
+
+  if (campo === 'email' && valor && typeof valor === 'string') {
+    return `<a href="mailto:${escapeHtml(valor)}" style="color: #2563eb; text-decoration: none;">${valorFormatado}</a>`;
+  }
+
+  return valorFormatado;
 }
 
 function obterIdentificador(dados: EmailRecordData): string {
