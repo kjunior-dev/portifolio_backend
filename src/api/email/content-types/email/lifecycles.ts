@@ -69,12 +69,12 @@ async function executarCodigoDepoisDaCriacao(dados: EmailRecordData): Promise<vo
   const identificador = obterIdentificador(dados);
 
   try {
-    strapi.log.info(`[Email lifecycle] Validando configuracao SMTP para registo ${identificador}.`);
+    strapi.log.info(`[Email lifecycle] Validando configuracao SendGrid para registo ${identificador}.`);
     validarConfiguracaoEmail();
 
     const subject = 'Nova mensagem recebida pelo website';
     strapi.log.info(
-      `[Email lifecycle] Configuracao SMTP carregada: host=${process.env.SMTP_HOST ?? 'smtp.gmail.com'}, port=${process.env.SMTP_PORT ?? '587'}, secure=${process.env.SMTP_SECURE ?? 'false'}, user=${process.env.SMTP_USERNAME ?? 'webdevcv.cv@gmail.com'}, passwordDefinida=${process.env.SMTP_PASSWORD ? 'sim' : 'nao'}`
+      `[Email lifecycle] Configuracao SendGrid carregada: apiKeyDefinida=${process.env.SENDGRID_API_KEY ? 'sim' : 'nao'}, from=${process.env.SENDGRID_DEFAULT_FROM ?? 'webdevcv.cv@gmail.com'}`
     );
 
     strapi.log.info(`[Email lifecycle] Gerando HTML e texto simples para registo ${identificador}.`);
@@ -137,7 +137,7 @@ async function enviarEmailComTimeout(
         timeout = setTimeout(() => {
           reject(
             new Error(
-              `Timeout ao enviar email depois de ${timeoutMs}ms. Verifique SMTP_HOST, SMTP_PORT, SMTP_SECURE e se a rede permite ligacao SMTP.`
+              `Timeout ao enviar email depois de ${timeoutMs}ms. Verifique SENDGRID_API_KEY e se a rede permite ligacoes HTTPS para o provider de email.`
             )
           );
         }, timeoutMs);
@@ -151,13 +151,13 @@ async function enviarEmailComTimeout(
 }
 
 function validarConfiguracaoEmail(): void {
-  if (!process.env.SMTP_PASSWORD) {
-    throw new Error('Configuracao SMTP incompleta. Variavel em falta: SMTP_PASSWORD.');
+  if (!process.env.SENDGRID_API_KEY) {
+    throw new Error('Configuracao SendGrid incompleta. Variavel em falta: SENDGRID_API_KEY.');
   }
 
-  if (process.env.SMTP_PASSWORD === 'your-gmail-app-password') {
+  if (process.env.SENDGRID_API_KEY === 'your-sendgrid-api-key') {
     throw new Error(
-      'Configuracao SMTP invalida. Substitua SMTP_PASSWORD por uma App Password real do Gmail.'
+      'Configuracao SendGrid invalida. Substitua SENDGRID_API_KEY por uma API key real do SendGrid.'
     );
   }
 }
