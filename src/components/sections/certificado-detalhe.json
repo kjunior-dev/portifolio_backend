@@ -21,8 +21,15 @@
     "titulo": {
       "type": "string"
     },
-    "urlCertificado": {
-      "type": "text"
+    "certificadoURL": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "entidadeFormadora": {
       "type": "string"

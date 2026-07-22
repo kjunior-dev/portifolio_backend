@@ -25,12 +25,14 @@ export interface SectionsCertificadoDetalhe extends Struct.ComponentSchema {
   attributes: {
     cards: Schema.Attribute.Component<'shared.card-informativo', true>;
     cargaHoraria: Schema.Attribute.String;
+    certificadoURL: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     entidadeFormadora: Schema.Attribute.String;
     icon: Schema.Attribute.String;
     iconValidacao: Schema.Attribute.String;
     tecnologias: Schema.Attribute.Component<'shared.tecnologia', true>;
     titulo: Schema.Attribute.String;
-    urlCertificado: Schema.Attribute.Text;
     validate: Schema.Attribute.Boolean;
   };
 }
