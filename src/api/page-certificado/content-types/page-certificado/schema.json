@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_certificados",
+  "info": {
+    "singularName": "page-certificado",
+    "pluralName": "page-certificados",
+    "displayName": "PageCertificado"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ativo": {
+      "type": "boolean"
+    },
+    "etiqueta": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "certificadoDetails": {
+      "type": "component",
+      "component": "sections.certificado-detalhe",
+      "repeatable": true
+    }
+  }
+}

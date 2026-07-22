@@ -16,6 +16,25 @@ export interface LayoutFooter extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsCertificadoDetalhe extends Struct.ComponentSchema {
+  collectionName: 'components_sections_certificado_detalhes';
+  info: {
+    displayName: 'CertificadoDetalhe';
+    icon: 'book';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'shared.card-informativo', true>;
+    cargaHoraria: Schema.Attribute.String;
+    entidadeFormadora: Schema.Attribute.String;
+    icon: Schema.Attribute.String;
+    iconValidacao: Schema.Attribute.String;
+    tecnologias: Schema.Attribute.Component<'shared.tecnologia', true>;
+    titulo: Schema.Attribute.String;
+    urlCertificado: Schema.Attribute.Text;
+    validate: Schema.Attribute.Boolean;
+  };
+}
+
 export interface SectionsCompetenciasTecnicas extends Struct.ComponentSchema {
   collectionName: 'components_sections_competencias_tecnicas';
   info: {
@@ -318,6 +337,7 @@ declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
       'layout.footer': LayoutFooter;
+      'sections.certificado-detalhe': SectionsCertificadoDetalhe;
       'sections.competencias-tecnicas': SectionsCompetenciasTecnicas;
       'sections.contacto': SectionsContacto;
       'sections.experiencia-profissional': SectionsExperienciaProfissional;

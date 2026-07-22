@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_sections_certificado_detalhes",
+  "info": {
+    "displayName": "CertificadoDetalhe",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "iconValidacao": {
+      "type": "string"
+    },
+    "validate": {
+      "type": "boolean"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "cargaHoraria": {
+      "type": "string"
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "urlCertificado": {
+      "type": "text"
+    },
+    "entidadeFormadora": {
+      "type": "string"
+    },
+    "cards": {
+      "type": "component",
+      "component": "shared.card-informativo",
+      "repeatable": true
+    },
+    "tecnologias": {
+      "type": "component",
+      "component": "shared.tecnologia",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

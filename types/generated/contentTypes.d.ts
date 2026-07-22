@@ -576,6 +576,42 @@ export interface ApiEmailEmail extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPageCertificadoPageCertificado
+  extends Struct.SingleTypeSchema {
+  collectionName: 'page_certificados';
+  info: {
+    displayName: 'PageCertificado';
+    pluralName: 'page-certificados';
+    singularName: 'page-certificado';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    ativo: Schema.Attribute.Boolean;
+    certificadoDetails: Schema.Attribute.Component<
+      'sections.certificado-detalhe',
+      true
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descricao: Schema.Attribute.Text;
+    etiqueta: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::page-certificado.page-certificado'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPaginaInicialPaginaInicial extends Struct.SingleTypeSchema {
   collectionName: 'pagina_inicials';
   info: {
@@ -1187,6 +1223,7 @@ declare module '@strapi/strapi' {
       'api::categorias-de-projeto.categorias-de-projeto': ApiCategoriasDeProjetoCategoriasDeProjeto;
       'api::configuracoes-do-site.configuracoes-do-site': ApiConfiguracoesDoSiteConfiguracoesDoSite;
       'api::email.email': ApiEmailEmail;
+      'api::page-certificado.page-certificado': ApiPageCertificadoPageCertificado;
       'api::pagina-inicial.pagina-inicial': ApiPaginaInicialPaginaInicial;
       'api::projeto.projeto': ApiProjetoProjeto;
       'plugin::content-releases.release': PluginContentReleasesRelease;
